@@ -58,7 +58,7 @@ public class Board {
     }
 
     public boolean checkWin(PlayingPiece pieceType) {
-        int boardSize = board.length; // Assuming board is a 2D array of PlayingPiece
+        int boardSize = board.length;
         for (int i = 0; i < boardSize; i++) {
             boolean rowWin = true;
             for (int j = 0; j < boardSize; j++) {
