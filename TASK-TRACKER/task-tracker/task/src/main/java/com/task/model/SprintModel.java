@@ -9,5 +9,9 @@ public class SprintModel {
     public SprintModel(String sprintName, List<TaskModel> tasks) {
         this.sprintName = sprintName;
         this.tasks = tasks;
-    } 
+    }
+    
+    public String getSprintName() {
+        return sprintName;
+    }
 }

@@ -19,12 +19,12 @@ public class SprintService {
     }
 
     public void deleteSprint(String sprintName) {
-        sprints.removeIf(sprint -> sprint.sprintName.equals(sprintName));
+        sprints.removeIf(sprint -> sprint.getSprintName().equals(sprintName));
         System.out.println("Sprint deleted: " + sprintName);
     }
 
     public void addTasksinSprint(String sprintName, List<TaskModel> tasks) {
-        SprintModel sprint = sprints.stream().filter(s -> s.sprintName.equals(sprintName)).findFirst().orElse(null);
+        SprintModel sprint = sprints.stream().filter(s -> s.getSprintName().equals(sprintName)).findFirst().orElse(null);
         if (sprint != null) {
             sprint.tasks.addAll(tasks);
             System.out.println("Tasks added to sprint: " + sprintName);
@@ -34,22 +34,19 @@ public class SprintService {
     }
 
     public void displaySprint(String sprintName) {
-        SprintModel sprint = sprints.stream().filter(s -> s.sprintName.equals(sprintName)).findFirst().orElse(null);
+        SprintModel sprint = sprints.stream().filter(s -> s.getSprintName().equals(sprintName)).findFirst().orElse(null);
         if (sprint != null) {
             System.out.println();
-            System.out.println("Sprint name: " + sprint.sprintName);
+            System.out.println("Sprint name: " + sprint.getSprintName());
             System.out.println("Tasks: ");
-            String format = "%-20s %-10s %-10s %-15s %-15s%n";
-            System.out.printf(format, "Task Name", "Type", "Status", "Created By", "Assigned To" , "Due Date");
-            System.out.println("--------------------------------------------------------------------------");
+            String format = "%-20s %-10s %-10s %-15s %-15s %-15s%n";
+            System.out.printf(format, "Task Name", "Type", "Status", "Created By", "Assigned To", "Due Date");
+            System.out.println("------------------------------------------------------------------------------------------");
             sprint.tasks.forEach(task -> {
-                System.out.printf(format, task.TaskName, task.Type, task.Status, task.CreatedBy, task.AssignedTo , task.DueDate);
+                System.out.printf(format, task.TaskName, task.Type, task.Status, task.CreatedBy, task.AssignedTo , TaskModel.DueDate);
             });
         } else {
             System.out.println("Sprint not found: " + sprintName);
         }
     }
-
-
-
 }
