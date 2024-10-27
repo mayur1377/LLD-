@@ -2,15 +2,14 @@ package com.task.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StoryModel extends TaskModel {
     private String storySummary;
     private List<SubTask> subTasks;
 
-    public StoryModel(String taskName, String createdBy, String assignedTo, StatusType status, String storySummary, List<SubTask> subTasks) {
-        super(taskName, createdBy, assignedTo, TaskType.STORY, status);
-        this.storySummary = storySummary;
-        this.subTasks = (subTasks != null) ? subTasks : new ArrayList<>();  // Avoid null list
+    public StoryModel(String taskName, String createdBy, String assignedTo, StatusType status, String storySummary,Date dueDate, List<SubTask> subTasks) {
+        super(taskName, createdBy, assignedTo, TaskType.STORY, status, DueDate);
     }
 
     // Getter and setter methods for storySummary and subTasks

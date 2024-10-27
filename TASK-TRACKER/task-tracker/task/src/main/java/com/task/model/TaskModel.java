@@ -1,5 +1,6 @@
 package com.task.model;
 
+import java.sql.Date;
 import java.util.Arrays;
 
 public class TaskModel {
@@ -8,13 +9,15 @@ public class TaskModel {
     public String AssignedTo;
     public TaskType Type;
     public StatusType Status;
+    public static Date DueDate;
 
-    public TaskModel(String taskName, String createdBy, String assignedTo, TaskType type, StatusType status) {
+    public TaskModel(String taskName, String createdBy, String assignedTo, TaskType type, StatusType status , Date dueDate) {
         this.TaskName = taskName;
         this.CreatedBy = createdBy;
         this.AssignedTo = assignedTo;
         this.Type = type;
         this.Status = status;
+        this.DueDate = dueDate;
     }
 
     public void setAssignedTo(String assignedTo) {
@@ -28,7 +31,7 @@ public class TaskModel {
         } else if (this.Type == TaskType.FEATURE) {
             allowedStatus = new StatusType[]{StatusType.OPEN, StatusType.IN_PROGRESS, StatusType.TESTING, StatusType.DEPLOYED};
         } else if (this.Type == TaskType.STORY) {   
-            allowedStatus = new StatusType[]{StatusType.OPEN, StatusType.IN_PROGRESS, StatusType.FIXED}; // Assuming Completed is Fixed
+            allowedStatus = new StatusType[]{StatusType.OPEN, StatusType.IN_PROGRESS, StatusType.FIXED}; 
         }
     
         if (Arrays.asList(allowedStatus).contains(status)) {
@@ -46,6 +49,4 @@ public class TaskModel {
             throw new IllegalArgumentException("Invalid status for task type");
         }
     }
-    
-
 }
